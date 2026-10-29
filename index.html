@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#f4f7fb">
+  <meta name="description"
+        content="Página pessoal de João Leandro, estudante de Ciência da Computação.">
+
+  <title>João Leandro | Link na Bio</title>
+
+  <style>
+    /* 1. Paleta de cores e configurações gerais */
+    :root {
+      --fundo: #f4f7fb;
+      --cartao: #ffffff;
+      --borda: #dce5f0;
+      --texto: #17243a;
+      --texto-secundario: #52647c;
+      --azul: #2563eb;
+      --azul-hover: #1d4ed8;
+      --azul-claro: #eff6ff;
+      --sombra: 0 18px 50px rgba(30, 58, 95, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(
+          ellipse at top,
+          #e2edff 0%,
+          transparent 65%
+        ),
+        var(--fundo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* 2. Cartão principal */
+    .container {
+      width: 100%;
+      max-width: 440px;
+      padding: 34px 26px 24px;
+      text-align: center;
+      background: var(--cartao);
+      border: 1px solid var(--borda);
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+    }
+
+    /* 3. Avatar com as iniciais JL */
+    .avatar {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      border: 3px solid #dbeafe;
+      border-radius: 50%;
+      background: var(--azul-claro);
+      color: var(--azul);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(27px, 6vw, 32px);
+      line-height: 1.25;
+      letter-spacing: -0.7px;
+      overflow-wrap: anywhere;
+    }
+
+    .curso {
+      margin: 0 0 16px;
+      color: var(--azul);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .descricao {
+      max-width: 340px;
+      margin: 0 auto 28px;
+      color: var(--texto-secundario);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* 4. Título da área de links */
+    .titulo-links {
+      margin: 0 0 14px;
+      color: var(--texto-secundario);
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    /* 5. Botões simples e arredondados */
+    .links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link-button {
+      min-height: 54px;
+      width: 100%;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--azul);
+      border-radius: 14px;
+      background: var(--azul);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .link-button:hover {
+      background: var(--azul-hover);
+      border-color: var(--azul-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Link pendente: visual claro, sem endereço fictício */
+    .link-button.pendente {
+      background: #f8fafc;
+      color: #52647c;
+      border: 1px dashed #a9b8ce;
+      cursor: default;
+      transform: none;
+    }
+
+    .link-button.pendente:hover {
+      background: #f8fafc;
+      border-color: #a9b8ce;
+    }
+
+    /* 6. Foco visível para navegação por teclado */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #0f172a;
+      outline-offset: 4px;
+    }
+
+    /* 7. Aviso sobre links que precisam ser completados */
+    .aviso {
+      margin-top: 20px;
+      padding: 12px 14px;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #1e40af;
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .aviso[hidden] {
+      display: none;
+    }
+
+    /* 8. Rodapé */
+    .rodape {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--borda);
+      color: #64748b;
+      font-size: 11px;
+      letter-spacing: 1px;
+      line-height: 1.9;
+    }
+
+    /* 9. Ajustes para celular */
+    @media (max-width: 380px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .container {
+        padding: 28px 18px 22px;
+      }
+
+      .avatar {
+        width: 78px;
+        height: 78px;
+      }
+    }
+
+    /* Respeita usuários que preferem menos animações */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+
+      .link-button:hover {
+        transform: none;
+      }
+    }
+    
+/* Layout responsivo para celular e computador */
+
+/* O cartão se adapta à largura da tela */
+.container {
+  width: min(100%, 440px);
+  margin: auto;
+}
+
+/* A foto mantém o formato circular */
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Caso esteja usando uma foto */
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Botões confortáveis para toque */
+.links {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.link-button {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 18px;
+  overflow-wrap: anywhere;
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  body {
+    padding: 20px 12px;
+    align-items: flex-start;
+  }
+
+  .container {
+    padding: 28px 18px 22px;
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: clamp(25px, 7vw, 30px);
+  }
+
+  .descricao {
+    font-size: 15px;
+  }
+
+  .link-button {
+    min-height: 54px;
+  }
+}
+
+/* Computadores e telas maiores */
+@media (min-width: 768px) {
+  body {
+    padding: 40px 24px;
+  }
+
+  .container {
+    max-width: 460px;
+    padding: 38px 30px 26px;
+  }
+
+  .avatar {
+    width: 104px;
+    height: 104px;
+  }
+
+  .link-button {
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .link-button:hover {
+    box-shadow: 0 5px 14px rgb(37 99 235 / 18%);
+  }
+}
+
+/* Acessibilidade: respeita a preferência por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <!-- Identidade visual -->
+    <header>
+      <div class="avatar" aria-hidden="true">JL</div>
+
+      <h1>João Leandro</h1>
+
+      <p class="curso">Estudante de Ciência da Computação</p>
+
+      <p class="descricao">
+        Olá! Seja bem-vindo ao meu espaço.
+        Estou aprendendo, explorando novas tecnologias
+        e desenvolvendo minhas habilidades em programação.
+        Fique à vontade para conhecer meus canais e entrar em contato!
+      </p>
+    </header>
+
+    <!-- Links para redes sociais -->
+    <section aria-labelledby="titulo-links">
+      <h2 class="titulo-links" id="titulo-links">
+        Vamos nos conectar?
+      </h2>
+
+      <nav class="links" aria-label="Redes sociais e contato">
+        <!-- O JavaScript preenche os botões abaixo -->
+      </nav>
+    </section>
+
+    <!-- Aviso acessível sobre links pendentes -->
+    <p class="aviso" id="aviso" role="status" tabindex="-1" hidden></p>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+      CIÊNCIA DA COMPUTAÇÃO<br>
+      APRENDENDO • CRIANDO • EVOLUINDO
+    </footer>
+  </main>
+
+  <script>
+    // 10. Links originais.
+    // Substitua os valores somente pelos endereços reais dos seus perfis.
+    const meusLinks = [
+      {
+        nome: "LinkedIn",
+        simbolo: "in",
+        url: "",
+        descricao: "Meu perfil profissional"
+      },
+      {
+        nome: "WhatsApp",
+        simbolo: "✆",
+        url: "https://wa.me/qr/AS2R7NL7U2AHJ1",
+        descricao: "Entre em contato comigo"
+      },
+      {
+        nome: "Instagram",
+        simbolo: "◎",
+        url: "https://www.instagram.com/leandr0_jl?dlrf=MXJ5ejZzdXFpYmIwdA==s",
+        descricao: "Meu perfil no Instagram"
+      }
+    ];
+
+    // 11. Verifica se o endereço tem formato HTTP ou HTTPS.
+    // Isso não confirma que o perfil existe ou está acessível.
+    function urlValida(valor) {
+      try {
+        const endereco = new URL(valor);
+        return (
+          endereco.protocol === "https:" ||
+          endereco.protocol === "http:"
+        );
+      } catch {
+        return false;
+      }
+    }
+
+    // 12. Cria os botões sem inserir HTML vindo dos dados.
+    const lista = document.querySelector(".links");
+    const aviso = document.getElementById("aviso");
+    const pendencias = [];
+
+    meusLinks.forEach((item) => {
+      const configurado =
+        typeof item.url === "string" &&
+        item.url.trim() !== "" &&
+        urlValida(item.url.trim());
+
+      const botao = document.createElement(
+        configurado ? "a" : "button"
+      );
+
+      botao.className = "link-button";
+
+      const simbolo = document.createElement("span");
+      simbolo.setAttribute("aria-hidden", "true");
+      simbolo.textContent = item.simbolo;
+
+      const rotulo = document.createElement("span");
+      rotulo.textContent = item.nome;
+
+      botao.append(simbolo, rotulo);
+
+      if (configurado) {
+        botao.href = item.url.trim();
+        botao.target = "_blank";
+        botao.rel = "noopener noreferrer";
+        botao.setAttribute(
+          "aria-label",
+          item.nome + ": " + item.descricao +
+          " (abre em nova aba)"
+        );
+      } else {
+        botao.type = "button";
+        botao.classList.add("pendente");
+        botao.setAttribute(
+          "aria-label",
+          item.nome + ": link ainda não configurado"
+        );
+
+        pendencias.push(item.nome);
+
+        botao.addEventListener("click", () => {
+          aviso.hidden = false;
+          aviso.textContent =
+            "O link do " + item.nome +
+            " ainda não foi configurado. Edite a propriedade url " +
+            "desse item no arquivo index.html.";
+
+          aviso.focus();
+        });
+      }
+
+      lista.appendChild(botao);
+    });
+
+    // 13. Informa os links pendentes sem inventar endereços.
+    if (pendencias.length > 0) {
+      aviso.hidden = false;
+      aviso.textContent =
+        "Antes de publicar, configure os links de: " +
+        pendencias.join(", ") +
+        ". Depois, teste cada botão no navegador.";
+    }
+  </script>
+</body>
+</html>
+
